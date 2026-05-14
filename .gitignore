@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# Bot state — contain real user_ids, balances, and wallet data; never commit
+totals.json
+accounts.json
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Sensitive — private keys / mnemonics / wallet history
+.env
+wallets/
+*.mnemonic
+*.seed
+seed.txt
+mnemonic.txt
+mnemonics.txt
+*.private
+backup_*.json
+

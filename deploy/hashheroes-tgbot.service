@@ -1,0 +1,25 @@
+[Unit]
+Description=Hash-Heroes Telegram Bot (interactive)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=hashheroes
+Group=hashheroes
+WorkingDirectory=/opt/hashheroes-bot
+EnvironmentFile=/opt/hashheroes-bot/.env
+Environment=PYTHONUNBUFFERED=1
+Environment=TZ=Asia/Jakarta
+ExecStart=/opt/hashheroes-bot/.venv/bin/python -u /opt/hashheroes-bot/tgbot.py
+Restart=always
+RestartSec=15
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

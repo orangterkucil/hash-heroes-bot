@@ -1,0 +1,21 @@
+services:
+  hashheroes-bot:
+    build: .
+    image: hashheroes-bot:latest
+    container_name: hashheroes-bot
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Jakarta
+    # accounts.json + totals.json live OUTSIDE the image so creds & history
+    # survive rebuilds. Bind-mount each as a single file.
+    volumes:
+      - ./accounts.json:/app/accounts.json
+      - ./totals.json:/app/totals.json
+    # CMD inherits from Dockerfile (--loop --sleep 5).
+    # Override here if you want different flags, e.g.:
+    # command: ["python", "-u", "bot.py", "--loop", "--sleep", "10"]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"

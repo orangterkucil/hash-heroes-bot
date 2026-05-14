@@ -1,0 +1,28 @@
+[Unit]
+Description=Hash-Heroes Auto Bot (worker)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# CHANGE THESE if you installed somewhere else:
+User=hashheroes
+Group=hashheroes
+WorkingDirectory=/opt/hashheroes-bot
+EnvironmentFile=-/opt/hashheroes-bot/.env
+Environment=PYTHONUNBUFFERED=1
+Environment=TZ=Asia/Jakarta
+# Random delay so we never hit the API at the exact reboot second
+ExecStart=/opt/hashheroes-bot/.venv/bin/python -u /opt/hashheroes-bot/bot.py --loop --sleep 30
+Restart=always
+RestartSec=30
+# basic hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

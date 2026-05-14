@@ -1,0 +1,4 @@
+requests>=2.31.0
+colorama>=0.4.6
+python-telegram-bot>=21.6
+tonsdk>=1.0.15
